@@ -31,11 +31,12 @@ class inputTask extends StatelessWidget {
                 color: Colors.grey,
                 width: 1.0,
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(7),
             ),
             child: Row(
               children: [
-                Expanded(child: TextField(
+                Expanded(
+                  child: TextField(
                   readOnly: widget==null?false:true,
                   autofocus: false,
                   controller: conroller,

@@ -5,16 +5,14 @@ import 'kdefault.dart';
 
 class LoginButton extends StatelessWidget {
   final String text;
-
   final Function() onpressed;
-
   final Color textColor, backgroundCOlor;
 
   LoginButton(
       {required this.text,
       required this.onpressed,
-      this.textColor = Colors.white,
-      this.backgroundCOlor = KdefaultColor});
+      required this.textColor,
+      required this.backgroundCOlor});
 
   @override
   Widget build(BuildContext context) {

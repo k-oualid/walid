@@ -64,5 +64,22 @@ class _ScheduleState extends State<Schedule> {
 
 
     ),
-  );}
+  );
+  //_showTasks();
+  }
 }
+/*_showTasks(){
+  return Expanded(
+      child: Obx((){
+        return ListView.builder(
+          itemCount: _taskController.taskList.length,,
+            itemBuilder: (_,context){
+              return Container(
+                width: 100,
+                height: 50,
+                color:Colors.green,
+
+              );
+        });
+  }),
+  );*/
