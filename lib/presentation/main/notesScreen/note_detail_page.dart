@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:keyeinceapp/db/notes_database.dart';
 import 'package:keyeinceapp/model/note.dart';
-import 'package:keyeinceapp/Pages/edit_note_page.dart';
+import 'package:keyeinceapp/presentation/main/notesScreen/edit_note_page.dart';
 
 class NoteDetailPage extends StatefulWidget {
   final int noteId;

@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
- import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'package:keyeinceapp/Widgets/Course_card.dart';
-
 import 'models/Models.dart';
-
-
-
-
-
-
-
-
-
-
-
   const List<course> populaCorses = [
   course(
       image: 'assets/images/photoshop.jpg',
@@ -100,72 +88,6 @@ class CorsesListView extends StatelessWidget {
           height:  height * 0.22,
           child:  cours_card(cours: populaCorses[index],onBoarding: true,),
         )
-        //     Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     InkWell(
-        //       onTap: ontap,
-        //       child: Stack(
-        //         children: [
-        //           Container(
-        //             width: widh * 0.9,
-        //             height: 175,
-        //             alignment: Alignment.center,
-        //             decoration: BoxDecoration(
-        //               image: DecorationImage(
-        //                   image: AssetImage(coursess[index].path),
-        //                   fit: BoxFit.cover),
-        //               borderRadius: BorderRadius.circular(15),
-        //             ),
-        //           ),
-        //           Container(
-        //             padding: const EdgeInsets.only(left: AppPadding.p10, bottom: AppPadding.p10),
-        //             width: widh * 0.9,
-        //             height: 175,
-        //             margin: const  EdgeInsets.only(bottom: AppPadding.p20),
-        //             alignment: Alignment.bottomLeft,
-        //             decoration: BoxDecoration(
-        //                 borderRadius: BorderRadius.circular(AppRadius.r15),
-        //                 color: Colors.black.withOpacity(0.7)),
-        //             child: SizedBox(
-        //               width: widh * 0.25,
-        //               child: Column(
-        //                 mainAxisAlignment: MainAxisAlignment.end,
-        //                 crossAxisAlignment: CrossAxisAlignment.start,
-        //                 children: [
-        //                   Text(
-        //                       coursess[index].title,
-        //                       style: Theme.of(context).textTheme.subtitle2
-        //                     // const TextStyle(
-        //                     //     color: Colors.white, fontFamily: "Montserrat"),
-        //                   ),
-        //                   Text(
-        //                     coursess[index].coursesnum,
-        //                     style: Theme.of(context).textTheme.bodyText2,
-        //                     // style: const  TextStyle(
-        //                     //     color: Colors.grey,
-        //                     //     fontSize: 10,
-        //                     //     fontFamily: "Montserrat"),
-        //                   ),
-        //                   Container(
-        //                     child: const contuniueText(),
-        //                     decoration: BoxDecoration(
-        //                         borderRadius: BorderRadius.circular(20),
-        //                         color: ColorManager.pink
-        //                     ),
-        //                     alignment: Alignment.center,
-        //                     padding: const  EdgeInsets.symmetric(
-        //                         horizontal: 8, vertical: 2),
-        //                   )
-        //                 ],
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //     ),
-        //   ],
-        // ),
       );
   }
 }
@@ -257,11 +179,6 @@ class _DaysPreferredState extends State<DaysPreferred> {
     );
   }
 }
-
-
-
-
-
 class UserImage extends StatelessWidget {
   final String img;
   const UserImage({required this.img});

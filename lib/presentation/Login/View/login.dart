@@ -6,15 +6,12 @@ import 'package:keyeinceapp/presentation/resources/ThemeManager.dart';
 import 'package:keyeinceapp/presentation/resources/images.dart';
 import 'package:keyeinceapp/commun/Validator.dart';
 import 'package:provider/provider.dart';
-
-
 import '../../resources/FontsManager.dart';
 import '../../resources/Styles_Manager.dart';
+import '../../resources/appStrings.dart';
 import '../../resources/values_manager.dart';
 import '../ViewModel/login_viewModel.dart';
-
-
-
+import 'package:iconsax/iconsax.dart';
 class Login extends StatefulWidget {
   final PageController pageController;
   const  Login(this.pageController);
@@ -22,7 +19,6 @@ class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
-
 class _LoginState extends State<Login> {
 
   @override
@@ -30,81 +26,36 @@ class _LoginState extends State<Login> {
     double height = MediaQuery.of(context).size.height;
     double widh = MediaQuery.of(context).size.width;
     return
-      //MaterialApp(
-        // debugShowCheckedModeBanner: false,
-        // theme: getThemeData().copyWith(
-        //     elevatedButtonTheme: ElevatedButtonThemeData(
-        //         style: ElevatedButton.styleFrom(
-        //           elevation: AppElevation.e5,
-        //           padding: const EdgeInsets.all(AppPadding.p12),
-        //           shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppMargin.m10)),
-        //           primary: ColorManager.white,
-        //           // ColorManager.defaultColor
-        //         )
-        //     ),
-        //     textButtonTheme: TextButtonThemeData(
-        //         style: TextButton.styleFrom(
-        //           textStyle: boldStyle(
-        //               color: ColorManager.white,
-        //               fontWeight: FontWeightManager.bold,
-        //               fontSize: 12.0
-        //           ),
-        //         )
-        //     )
-        // ),
-       // home:
         MultiProvider(
           providers: [
             ChangeNotifierProvider<loginUser_viewModel>(create:(_)=> loginUser_viewModel())
           ],
-          child: Scaffold(
-            body: SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  /// the background
-                  Container(
-                    height: height * 0.5,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    child: Text(
-                        app.appName,
-                        style: Theme.of(context).textTheme.headline5
+          child: SingleChildScrollView(
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              body: Container(
+                padding:  const EdgeInsets.only(left:15,right:15),
+                height: height,
+                width: double.infinity,
+                child: Column(
+                  children: [
+                   const  SizedBox(height: 150,),
+                    Column(
+                     children: [
+                      Text("Login",style: TextStyle(color: Colors.black ,fontSize: 30,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.bold)),
+                      const SizedBox(height: 8,),
+                      Text(
+                        AppStrings.logintitle1,
+                        style:  TextStyle(height: 1.5,color: Colors.grey[700] ,fontSize: 13,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.light),
+                      ),
+                    ],
                     ),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(images.backgroundLogin),
-                          fit: BoxFit.cover),
+                    const  SizedBox(height: 100,),
+                    Container(
+                      child:TextFormFields(widget.pageController),
                     ),
-                  ),
-                  /// the textfields and buttons
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                        height: height * 0.52,
-                        width: widh,
-                        padding: const EdgeInsets.only(
-                            right: AppPadding.p20, left: AppPadding.p20, top: AppPadding.p40),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: AppRadius.r8,
-                              blurRadius: AppRadius.r14,
-                              offset: const Offset(AppOffset.off0_0, AppOffset.off3_0),
-                            ),
-                          ],
-                          color: ColorManager.defaultColor,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(AppRadius.r30),
-                            topRight: Radius.circular(AppRadius.r30),
-                          ),
-                        ),
-                        child:  TextFormFields(widget.pageController)
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -112,10 +63,6 @@ class _LoginState extends State<Login> {
    // );
   }
 }
-
-
-
-
 class TextFormFields extends StatefulWidget {
   final PageController pageController;
   const TextFormFields(this.pageController);
@@ -123,7 +70,6 @@ class TextFormFields extends StatefulWidget {
   @override
   _TextFormFieldsState createState() => _TextFormFieldsState();
 }
-
 class _TextFormFieldsState extends State<TextFormFields> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late TextEditingController emailTextEdetingController;
@@ -147,48 +93,49 @@ class _TextFormFieldsState extends State<TextFormFields> {
   @override
   Widget build(BuildContext context) {
     final double widh = MediaQuery.of(context).size.width;
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
+    final double height = MediaQuery.of(context).size.height;
+    return SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             /// E-mail
-            Padding(
-              padding: const EdgeInsets.only(bottom: AppPadding.p30),
+            Container(
               child: TextFormField(
                 style: const TextStyle(color: ColorManager.black),
                 controller: emailTextEdetingController,
                 cursorColor: ColorManager.defaultColor,
                 keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  hintText: " E-mail",
-                  prefixIcon: Icon(Icons.email),
+                decoration:  InputDecoration(
+                  fillColor: ColorManager.inputColor,
+                  filled: true,
+                  hintText: " E-mail ID",
+                  prefixIcon: Icon(Iconsax.sms,color: Colors.grey[400],),
                 ),
                 validator: (value)=>validator.emailValidator(value?? ""),
               ),
             ),
-
+            SizedBox(height:30),
             /// Password
             StatefulBuilder(
               builder: (_,setstate){
-                return  Padding(
-                  padding: const EdgeInsets.only(bottom: AppPadding.p30),
+                return  Container(
                   child: TextFormField(
-                    style: const TextStyle(color: ColorManager.black),
+                    style:  TextStyle(color: ColorManager.black),
                     controller: passwordTextEdetingController,
                     cursorColor: ColorManager.defaultColor,
                     decoration:  InputDecoration(
+                      fillColor: ColorManager.inputColor,
+                      filled: true,
                       hintText: ' Password',
-                      prefixIcon: const Icon(Icons.password),
+                      prefixIcon: Icon(Iconsax.password_check,color: Colors.grey[400],),
                       suffixIcon: IconButton(
                           onPressed: () {
                             setstate(()=>inVisible=!inVisible);
                           },
                           icon: Icon(inVisible
                               ? Icons.visibility_off
-                              : Icons.visibility)),
+                              : Icons.visibility,color: Colors.grey[400],)),
                     ),
                     validator: (value)=>validator.passwordlValidator(value?? ""),
                     obscureText: inVisible,
@@ -201,22 +148,20 @@ class _TextFormFieldsState extends State<TextFormFields> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "don't remmember password ?",
-                  style: Theme.of(context).textTheme.subtitle2,
-                ),
-                TextButton(
-                  onPressed: (){},
-                  child: const Text(' reset here ',
-                    style: TextStyle(color: ColorManager.white,),
+                Padding(
+                  padding: const EdgeInsets.only(left:240),
+                  child: TextButton(
+                    onPressed: (){},
+                    child:  Text("Forget Password?",
+                      style: TextStyle(color: Colors.blue,fontSize: 11 ,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.semiBold),
+                    ),
                   ),
                 ),
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 60,
             ),
-
             /// log in button
             SizedBox(
                 width: widh,
@@ -224,64 +169,73 @@ class _TextFormFieldsState extends State<TextFormFields> {
                   selector: (_,provider)=>provider.isLoading,
                   builder: (_,isLoading,__)=> isLoading? const Center(
                     child: CircularProgressIndicator(
-                      color: ColorManager.white,
+                      color: Colors.white,
                     ),
                   ) :
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                                elevation: AppElevation.e5,
-                                padding: const EdgeInsets.all(AppPadding.p12),
-                                shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppMargin.m10)),
-                                primary: ColorManager.white,
-                                // ColorManager.defaultColor
-                              ),
                     onPressed: ()async{
                       if( _formKey.currentState!.validate()){
-                     //   Focus.of(context).unfocus();
                         await Provider.of<loginUser_viewModel>(context,listen: false).loginUser(
                             email: emailTextEdetingController.text.trim(),
                             password: passwordTextEdetingController.text.trim(),
                             context: context);
                       }
                     },
-                    child: Text(
-                      'LOG IN',
-                      style: semiBoldStyle(color: ColorManager.defaultColor),
+                    child: Center(
+                      child: Text('Login',style:TextStyle(color: Colors.white,fontSize: 13)),
                     ),
                   ),
                 )
             ),
-
-            const SizedBox(
-              height: 20,
-            ),
-
-            /// register now
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const   Text(
-                  "don't have account ?",
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white,
-                      fontFamily: "Montserrat"),
+            SizedBox(height: 15,),
+            OrDivider(),
+            SizedBox(height: 15,),
+            SizedBox(
+              width: widh,
+              child: ElevatedButton(
+                child: Text('Login with Google',style:TextStyle(color: Colors.white,fontSize: 13)),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red,
                 ),
-                TextButton(
-                  onPressed: () {
-                    widget.pageController.nextPage(duration: const Duration(milliseconds: 250), curve: Curves.easeIn);
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //   builder: (_)=>const RegisterPage(),
-                    // ));
-                  },
-                  child: const Text(' register now ',
-                    style: TextStyle(color: ColorManager.white),),
-                )
-              ],
+                onPressed: () {
+                  print('hello ya chayyeb');
+                },
+              ),
             ),
-          ],
+            const SizedBox(height: 20,),
+            /// login via google
+            /// register now
+              ],
         ),
+    );
+  }
+}
+class OrDivider extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: size.height*0.02),
+      width : size.width * 0.8,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+              child: Divider(
+            color: Colors.grey,
+            height: 1.5,
+          )),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text("OR",style:TextStyle(fontSize: 12,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.regular)),
+          ),
+          Expanded(
+              child: Divider(
+                color: Colors.grey,
+                height: 1.5,
+              )),
+        ],
       ),
     );
   }
+  
 }

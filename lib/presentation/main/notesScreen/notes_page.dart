@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:keyeinceapp/db/notes_database.dart';
 import 'package:keyeinceapp/model/note.dart';
-import 'package:keyeinceapp/Pages/edit_note_page.dart';
-import 'package:keyeinceapp/Pages/note_detail_page.dart';
+import 'package:keyeinceapp/presentation/main/notesScreen/edit_note_page.dart';
 import 'package:keyeinceapp/theme/kdefault.dart';
 import 'package:keyeinceapp/theme/note_card_widget.dart';
-
+import 'package:keyeinceapp/presentation/main/notesScreen/note_detail_page.dart';
+import 'package:keyeinceapp/presentation/main/notesScreen/notes_page.dart';
 class NotesPage extends StatefulWidget {
   @override
   _NotesPageState createState() => _NotesPageState();

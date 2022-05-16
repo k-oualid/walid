@@ -58,7 +58,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                               image: AssetImage(images.appBarImage),
                               fit: BoxFit.cover)),
                     ),
-                    title: const Text(app.appName),
+                    title: const Text(app.appRegistreation,style: TextStyle(fontSize: 20),),
                     actions: [
                       for(int i=0;i<2;i++) Padding(
                         padding: const EdgeInsets.all(AppPadding.p2),

@@ -82,11 +82,6 @@ class _LoginState extends State<Login> {
                       LoginButton(
                         text: 'Log in',
                         onpressed: () {
-                          /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const PreferredCourses()),
-                          );*/
                         },
                         backgroundCOlor:Color(0xFF2958F5) ,
                         textColor: Colors.white,
@@ -95,11 +90,7 @@ class _LoginState extends State<Login> {
                       LoginButton(
                         text: 'Continue with google',
                         onpressed: () {
-                          /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const PreferredCourses()),
-                          );*/
+
                         },
                         backgroundCOlor:Color(0xFFC62A1D) ,
                         textColor: Colors.white,
@@ -120,11 +111,6 @@ class _LoginState extends State<Login> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              /*Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>  const  RegisterPage()),
-                              );*/
                             },
                             child: const   Text(' register now ',
                                 style: TextStyle(

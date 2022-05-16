@@ -9,7 +9,6 @@ import 'package:keyeinceapp/presentation/resources/ColorManager.dart';
 import 'package:keyeinceapp/presentation/resources/FontsManager.dart';
 import 'package:keyeinceapp/presentation/resources/values_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../theme//components.dart';
 import '../models/Models.dart';
 import '../presentation/main/postsPages/view/Posts_view.dart';
@@ -186,23 +185,6 @@ class _LikeAndCommentState extends State<LikeAndComment> {
               SizedBox(
                 width: AppWidth.w10,
               ),
-              /*
-                  TextField(
-                      key: const  ValueKey('Password876'),
-                      controller:  TextEditingController(),
-                      maxLines: 4,
-                      minLines: 1,
-                      decoration: InputDecoration(
-                        hintText: 'add a comment as #${tmp.poster_username}',
-                        suffixIcon:  IconButton(
-                          onPressed: (){},
-                          icon: Image.asset("assets/images/navigation-2-outline.png",color: KdefaultColor,),
-                          iconSize: 25,
-                        ),
-                      ),
-                      keyboardType: TextInputType.text,
-                    ),
-                   */
               Expanded(
                 child: TextFiledComment(),
               ),

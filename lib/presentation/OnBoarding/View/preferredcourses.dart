@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
-
 import 'package:keyeinceapp/presentation/resources/ColorManager.dart';
 import 'package:keyeinceapp/presentation/resources/appStrings.dart';
 import 'package:keyeinceapp/presentation/resources/values_manager.dart';
 import 'package:provider/provider.dart';
-
 import '../../../models/Models.dart';
+import '../../resources/FontsManager.dart';
 import '../ViewModel/OnBoarding_ViewModel.dart';
 
 class PreferredCourses extends StatelessWidget {
@@ -23,30 +21,33 @@ class PreferredCourses extends StatelessWidget {
                 right: AppPadding.p8,
                 bottom: AppPadding.p5
                 ,top: AppPadding.p20),
-            child: RichText(
-              text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
+            child: Container(
+              margin: const EdgeInsets.only(left: 10),
+              child: RichText(
+                text: const TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
                         text: AppStrings.onBoardingTitle1,
-                        style: Theme.of(context).textTheme.headline3
-                    ),
-                    TextSpan(
+                        style:  TextStyle(height: 1.5,color: Colors.black ,fontSize: 24,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.semiBold),
+                      ),
+                      TextSpan(
                         text: AppStrings.onBoardingTitle2,
-                        style: Theme.of(context).textTheme.headline1
-                    ),
-                  ]
+                        style:  TextStyle(height: 1.5,color: Colors.black ,fontSize: 24,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.semiBold),
+                      ),
+                    ]
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 8.0, bottom: 15, top: 5),
+            padding: const EdgeInsets.only(left: 10),
             child: Text(
               AppStrings.onBoardingSubTitle,
               style: Theme.of(context).textTheme.caption,
               // style: TextStyle(
-              //                             color: Colors.grey, fontFamily: "Montserrat"),
             ),
           ),
+          const SizedBox(height: 25,),
           GridList(
             ontap: () {},
             list: categries,
@@ -110,9 +111,9 @@ class _GridListState extends State<GridList> {
 List<categories> categries = [
   categories(title: 'DESIGN UI UX'),
   categories(title: 'WEB DEVLOPMENT'),
-  categories(title: 'CYBER ECURETY'),
+  categories(title: 'CYBER SECURETY'),
   categories(title: 'MOBILE DEVLOPMENT'),
   categories(title: 'GRAPHICMOYION'),
-  categories(title: 'AI & MACHINE LEARNING'),
+  categories(title: 'MACHINE LEARNING'),
 ];
 

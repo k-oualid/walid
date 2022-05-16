@@ -54,7 +54,7 @@ dependencies:
   readmore: ^2.1.0
   tuple: ^2.0.0
   firebase_core: ^1.16.0
-
+  iconsax: ^0.0.8
 dev_dependencies:
   flutter_test:
     sdk: flutter

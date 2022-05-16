@@ -3,7 +3,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:keyeinceapp/presentation/resources/ColorManager.dart';
 import 'package:keyeinceapp/presentation/resources/appStrings.dart';
-
 import '../../../theme/components.dart';
 import '../../main/main_view.dart';
 import '../../resources/FontsManager.dart';
@@ -22,7 +21,7 @@ class _RECOMMANDED_COURSESState extends State<RECOMMANDED_COURSES> {
   Widget build(BuildContext context) {
     double widh = MediaQuery.of(context).size.width;
     return Padding(
-        padding: const  EdgeInsets.symmetric(horizontal: AppPadding.p15),
+        padding: const  EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           shrinkWrap: true,
           children: [
@@ -31,34 +30,34 @@ class _RECOMMANDED_COURSESState extends State<RECOMMANDED_COURSES> {
                 children: [
                   Expanded(
                     child: Container(
-                      width: widh*0.5,
-                      margin: const  EdgeInsets.symmetric(vertical: AppMargin.m20,),
-                      child: AutoSizeText(
+                      margin: const EdgeInsets.only(left: 10,top: 20,bottom: 20),
+                      child: Text(
                           AppStrings.recommanded_courses ,
-                          maxLines: 2,
-                          minFontSize: FontSizeManager.s30,
-                          maxFontSize: FontSizeManager.s50,
-                          style: Theme.of(context).textTheme.headline1
-                        // TextStyle(
-                        //     fontWeight: FontWeight.w900,
-                        //     fontFamily: "Montserrat",
-                        // ),
+                        style:  TextStyle(height: 1.5,color: Colors.black ,fontSize: 24,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.semiBold),
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: ()=> Navigator.pushReplacement(
+                  GestureDetector(
+                    onTap: ()=> Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>  const HomePage() ),
                     ),
-                    child: Text(AppStrings.skip,
-                      style: Theme.of(context).textTheme.headline6!.copyWith(color: ColorManager.white),
-                      // style: TextStyle(
-                      //   color: Kdefault.KdefaultColor,
-                      //   fontSize: 14
-                      // ),
-                    ),
+                  child:Container(
+                  width: 90,
+                  height: 46,
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(17),
+                  color: ColorManager.lightDefaultColor,
+                  ),
+                  child:Center(
+                  child: Text(AppStrings.skip,
+                  style: TextStyle(
+                  color: Colors.white,
+                  ),
+                  ),
+                  )
+                  ),
                   ),
                 ],
               ),

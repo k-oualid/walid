@@ -10,14 +10,9 @@ import 'package:keyeinceapp/presentation/resources/ThemeManager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'package:firebase_setup/firebase_options.dart';
-
-
-
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); //options: DefaultFirebaseOptions.currentPlatform,
-
   /// this is used to remove the color of the status bar of the phone
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -30,11 +25,6 @@ class MyApp extends StatelessWidget {
   const MyApp();
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   theme: getThemeData(),
-    //   debugShowCheckedModeBanner: false,
-    //   home: const HomePage(),
-    // );
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<nextPage_viewModel>(create: (_)=>nextPage_viewModel()),
@@ -93,9 +83,6 @@ class _loginORregisterState extends State<loginORregister> {
     );
   }
 }
-
-
-
 class NextPage extends StatelessWidget {
   const NextPage();
 

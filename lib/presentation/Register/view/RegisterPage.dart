@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:keyeinceapp/commun/Validator.dart';
 import 'package:keyeinceapp/presentation/main/main_Viewmodel.dart';
-import 'package:keyeinceapp/presentation/resources/images.dart';
 import 'package:keyeinceapp/presentation/Login/View/login.dart';
 import 'package:keyeinceapp/presentation/Register/viewModel/RegisterViewModel.dart';
 import 'package:keyeinceapp/presentation/resources/App.dart';
@@ -11,6 +10,7 @@ import 'package:keyeinceapp/presentation/resources/appStrings.dart';
 import 'package:provider/provider.dart';
 
 import '../../resources/ColorManager.dart';
+import '../../resources/FontsManager.dart';
 import '../../resources/values_manager.dart';
 
 
@@ -18,7 +18,7 @@ import '../../resources/values_manager.dart';
 
 class RegisterPage extends StatelessWidget {
   final PageController pageController;
-  const  RegisterPage(this.pageController);
+  const RegisterPage(this.pageController);
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +30,28 @@ class RegisterPage extends StatelessWidget {
             ChangeNotifierProvider<RegisterUser_viewModel>(create: (_) => RegisterUser_viewModel()),
           ],
           child: Scaffold(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              flexibleSpace: Container(
-                decoration:  const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(images.appBarImage),
-                        fit: BoxFit.cover)),
+              leading: BackButton(
+                  color: Colors.black
               ),
-              title: const Text(app.appName),
+              titleSpacing: 0.0,
+              title:  Text("TreeTech",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Montserrat"),
+              ),
+              centerTitle: true,
+              flexibleSpace: Stack(
+                children:<Widget> [
+                  Container( decoration:  const BoxDecoration(
+                      image: DecorationImage(image: AssetImage("assets/images/backroundappbar.png") , fit: BoxFit.cover)
+                  ),
+                  ),
+                ],
+              ),
             ),
             body: CustomScrollView(
               slivers: <Widget>[
@@ -47,12 +60,9 @@ class RegisterPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Padding(
                           padding: EdgeInsets.only(
-                            // top: height * 0.07 ,
-                            // right: width * 0.28 ,
-                            // bottom: height * 0.02 ,
                               top: AppPadding.p20,
                               right: width * 0.28,
                               bottom: AppPadding.p10,
@@ -61,49 +71,31 @@ class RegisterPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               RichText(
-                                text: TextSpan(
+                                text: const TextSpan(
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text: AppStrings.registertitle1 ,
-                                          style: Theme.of(context).textTheme.headline1
-                                        /*
-                              TextStyle(color: Colors.black ,
-                                fontSize: 30 ,
-                                fontWeight: FontWeight.bold,fontFamily: "Montserrat"),
-                               */
+                                          text: AppStrings.registertitle1,
+                                          style:  TextStyle(height: 1.5,color: Colors.black ,fontSize: 24,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.semiBold),
                                       ),
-                                      TextSpan(
-                                          text: AppStrings.registertitle2 ,
-                                          style: Theme.of(context).textTheme.headline3
-                                        // TextStyle(
-                                        //     color: Colors.white ,
-                                        //     backgroundColor: Kdefault.KdefaultColor ,
-                                        //     fontSize: 30 ,
-                                        //     fontWeight: FontWeight.bold,
-                                        //     fontFamily: "Montserrat"
-                                        // ),
-                                      )
                                     ]
                                 ),
                               ),
                               const  SizedBox(height: AppHeight.h10,),
-                              SizedBox(
-                                height: AppHeight.h50,
-                                width: width * 0.5 ,
-                                child: Text(
-                                  AppStrings.registerSubtitle,
-                                  style: Theme.of(context).textTheme.caption,
-                                  // style: TextStyle(
-                                  //     color: Colors.grey ,
-                                  //     fontFamily: "Montserrat"
-                                  // ),
+                              const SizedBox(
+                                //height: AppHeight.h50,
+                                //width: width * 0.5 ,
+                                child:  Text(
+                                  "Add your e-mail adresse and password to create your account .",
+                                  style:  TextStyle(height: 1.5,fontSize: 13,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.light),
                                 ),
                               ),
+                              const  SizedBox(height: AppHeight.h10,),
                             ],
                           ),
                         ),
                       ),
                       /// textFormFields + register Button
+                      const SizedBox(height: 15,),
                       const TextFormFields(),
                     ],
                   ),
@@ -135,21 +127,13 @@ class RegisterPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(AppStrings.haveAccount,
-                                style: Theme.of(context).textTheme.headline2,
-                                // style: TextStyle(color: Kdefault.KdefaultColor , fontFamily: "Montserrat"),
-                              ),
                               TextButton(
                                 onPressed: (){
                                   pageController.previousPage(duration: const Duration(milliseconds: 250), curve: Curves.easeIn);
                                 },
-                                // onPressed: ()=>Navigator.pop(context),
-                                // onPressed: ()=> Navigator.push(context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => const Login(),
-                                //   ),
                                 // ),
-                                child: const Text(AppStrings.login),
+                                child:  Text(AppStrings.haveAccount,
+                                  style: Theme.of(context).textTheme.headline2,),
                               ),
                             ],
                           ),
@@ -210,7 +194,7 @@ class _TextFormFieldsState extends State<TextFormFields> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const  EdgeInsets.symmetric(horizontal: AppPadding.p20) ,
+      padding: const  EdgeInsets.symmetric(horizontal: AppPadding.p18) ,
       child: Form(
         key: _formKey,
         child: Column(
@@ -218,7 +202,7 @@ class _TextFormFieldsState extends State<TextFormFields> {
           children: [
             /// name
             Padding(
-              padding: const EdgeInsets.only(bottom: AppPadding.p30),
+              padding: const EdgeInsets.only(bottom: AppPadding.p18),
               child: TextFormField(
                 style: const TextStyle(color: Colors.black),
                 controller: nameTextEdetingController,
@@ -231,7 +215,7 @@ class _TextFormFieldsState extends State<TextFormFields> {
             ),
             /// Email
             Padding(
-              padding: const EdgeInsets.only(bottom: AppPadding.p30),
+              padding: const EdgeInsets.only(bottom: AppPadding.p18),
               child: TextFormField(
                 style: const TextStyle(color: Colors.black),
                 controller: emailTextEdetingController,
@@ -250,9 +234,9 @@ class _TextFormFieldsState extends State<TextFormFields> {
                     children: [
                       ///Password
                       Padding(
-                        padding: const EdgeInsets.only(bottom: AppPadding.p30),
+                        padding: const EdgeInsets.only(bottom: AppPadding.p18),
                         child: TextFormField(
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                           controller: passwordTextEdetingController,
                           cursorColor: ColorManager.defaultColor,
                           decoration:  InputDecoration(
@@ -272,9 +256,9 @@ class _TextFormFieldsState extends State<TextFormFields> {
                       ),
                       ///Confirm Password
                       Padding(
-                        padding: const EdgeInsets.only(bottom: AppPadding.p20),
+                        padding: const EdgeInsets.only(bottom: AppPadding.p15),
                         child: TextFormField(
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                           controller: confirmPasswordTextEdetingController,
                           cursorColor: ColorManager.defaultColor,
                           decoration:  InputDecoration(
@@ -301,26 +285,22 @@ class _TextFormFieldsState extends State<TextFormFields> {
             /// privacy text
             Row(
               children: [
-               // const  Icon(Icons.check_box , color: Kdefault.KdefaultColor,size: 15,),
                 Checkbox(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                     value: true,
                     onChanged: (value){}
                 ),
-                Text(
+                const Text(
                   AppStrings.privacy1,
-                  style: Theme.of(context).textTheme.caption,
-                  //  style: TextStyle(color: Colors.black87 , fontSize: 12,fontFamily: "Montserrat"),
+                  style:  TextStyle(fontSize: 12,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.regular),
                 ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: (){
-                    },
-                    child: const AutoSizeText(
-                      AppStrings.privacy2,
-                      maxLines: 2,
-                      minFontSize: 10,
-                      maxFontSize: 25,
-                    ),
+                TextButton(
+                  onPressed: (){
+                  },
+                  child: const AutoSizeText(
+                    AppStrings.privacy2,
+                    style: TextStyle(color:ColorManager.blue,fontSize: 12,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.regular),
                   ),
                 ),
               ],
@@ -347,18 +327,17 @@ class _TextFormFieldsState extends State<TextFormFields> {
 
                       }
                     },
-                    child: const Text(
-                      AppStrings.signUp,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 2),
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(color: Colors.white,fontSize: 15 ,fontFamily: FontFamilyManager.defaultFamily,fontWeight: FontWeightManager.semiBold),
+                      ),
                     ),
                   );
                 }
               )
             ),
-            // LoginButton(text: 'SIGN UP', onpressed: (){
-            //   Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) =>  const  PreferredCourses()),
-            //   );
-            // },),
           ],
         ),
       ),

@@ -19,18 +19,6 @@ class Allertdialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppPadding.p25),
       ),
-      /*
-       Container(
-        height: height/3.5,
-        width: width-50,
-        decoration: BoxDecoration(
-          color: ColorManager.primaryColor,
-          borderRadius: BorderRadius.circular(AppRadius.r12),
-        ),
-        padding: const EdgeInsets.all(AppPadding.p10),
-        child: const Grey_text(text: " write here what you want to post "),
-      ),
-       */
       content: TextFormField(
         maxLines: 10,
        style: Theme.of(context).textTheme.overline,

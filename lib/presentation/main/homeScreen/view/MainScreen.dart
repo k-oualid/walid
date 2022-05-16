@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:keyeinceapp/presentation/main/main_Viewmodel.dart';
 import 'package:keyeinceapp/presentation/main/main_view.dart';
+import 'package:keyeinceapp/presentation/main/notesScreen/notes_page.dart';
 import 'package:keyeinceapp/presentation/resources/FontsManager.dart';
 import 'package:keyeinceapp/Widgets/Post.dart';
 import 'package:keyeinceapp/presentation/resources/ColorManager.dart';
@@ -9,7 +10,6 @@ import 'package:keyeinceapp/presentation/resources/Styles_Manager.dart';
 import 'package:keyeinceapp/presentation/resources/images.dart';
 import 'package:keyeinceapp/presentation/resources/values_manager.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../models/Models.dart';
 import '../../../../Widgets/Course_card.dart';
 import '../../postsPages/view/Posts_view.dart';
@@ -27,9 +27,9 @@ class homeScreen extends StatelessWidget {
         child: Column(
             children: [
               profilecard(height: height,),
-              const Title_Text(txt:'   Keyeince features',seAll: false),
+              const Title_Text(txt:'Treetech features',seAll: false),
               const Keyeince_features(),
-              const Title_Text(txt:'   Courses for you',seAll: true),
+              const Title_Text(txt:'Courses for you',seAll: true),
               const CorsesListViewItems(),
               const recentlyPoststitle(),
               const Recentrly_posts(),
@@ -52,16 +52,11 @@ class recentlyPoststitle extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children:  [
-               Text('   Recently posts',
+               Text('Recently posts',
               style: Theme.of(context).textTheme.headline4!.copyWith(fontWeight: FontWeightManager.bold),
                ),
              TextButton(
               onPressed: ()=> Provider.of<buttomNavy_viewModel>(context,listen: false).goTo(2),
-              //     Navigator.of(context).push(
-              //     MaterialPageRoute(
-              //         builder: (_)=>const PostsPage()
-              //     ),
-              // ),
               child: const Text('SEE ALL'),
             ),
           ],
@@ -69,7 +64,6 @@ class recentlyPoststitle extends StatelessWidget {
     );
   }
 }
-
 
 class Title_Text extends StatelessWidget {
 final String txt;
@@ -122,15 +116,6 @@ class profilecard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:   [
-                  // FutureBuilder<String?>(
-                  //   future: AuthService.fetchUsername(),
-                  //   builder: (_,snapshot)=> Text('Hi , ' + (snapshot.data ?? "user"),
-                  //       style: boldStyle(color: ColorManager.white)
-                  //   ),
-                  // ),
-
-
-
                   FutureBuilder<String>(
                     future: usernameManage.getUsername(),
                     builder: (_,snapshot)=> Text('Hi , ' + (snapshot.data ?? 'HIHIHI'),
@@ -180,8 +165,8 @@ class Keyeince_features extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const List<Keyeince_features_item> Keyeince_features_items = [
-      Keyeince_features_item(name: "Add\nnote", logo: Icons.note_add_outlined, page:  AddPostPage()),
+     List<Keyeince_features_item> Keyeince_features_items = [
+      Keyeince_features_item(name: "Add\nnote", logo: Icons.note_add_outlined, page:  NotesPage()),
       Keyeince_features_item(name: "Study\nresult", logo: Icons.query_stats,page:  AddPostPage()),
       Keyeince_features_item(name: 'Add\npost', logo: Icons.add,page:  AddPostPage()),
     ];
@@ -192,11 +177,11 @@ class Keyeince_features extends StatelessWidget {
               MaterialPageRoute(builder: (context)=>tmp.page)
           ),
           child: Container(
-            height: AppHeight.h60,
+            height: 60,
             margin: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               color: ColorManager.defaultColor,
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(13),
               boxShadow: const <BoxShadow>[
                 BoxShadow(
                   color: ColorManager.black26,
@@ -204,10 +189,6 @@ class Keyeince_features extends StatelessWidget {
                   offset: Offset(AppOffset.off0_0, AppOffset.off0_75),
                 )
               ],
-              // image: const DecorationImage(
-              //   image: AssetImage('assets/images/CARD.png'),
-              //   fit: BoxFit.fill,
-              // ),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -227,29 +208,6 @@ class Keyeince_features extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-/*
-List<courses> _webdevloppment =const [
-  courses(path: 'images/backround_appbar.png' , title: 'Full stack', coursesnum: '29'),
-  courses(path: 'images/backround_appbar.png' , title: 'Frontend Course',coursesnum: '29'),
-  courses(path: 'images/backround_appbar.png' , title: 'UI/UX COURSES',coursesnum: '29'),
-  courses(path: 'images/backround_appbar.png' , title: 'UI/UX COURSES',coursesnum: '29'),
-  courses(path: 'images/backround_appbar.png' , title: 'UI/UX Courses',coursesnum: '29'),
-  courses(path: 'images/backround_appbar.png' , title: 'UI/UX COURSES',coursesnum: '29'),
-
-];
-
- */
-
-
-
 
 class CorsesListViewItems extends StatelessWidget {
   const CorsesListViewItems();

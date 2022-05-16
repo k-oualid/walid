@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keyeinceapp/presentation/resources/ColorManager.dart';
 import 'package:keyeinceapp/presentation/resources/values_manager.dart';
-
 import '../presentation/main/CoursePage/view/CoursePage.dart';
 import '../presentation/resources/FontsManager.dart';
 import '../models/Models.dart';
